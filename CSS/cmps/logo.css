@@ -1,0 +1,12 @@
+.logo{
+    font-family: 'Kranky', serif;
+    font-size: 2rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #F5F5F5;
+     text-transform: uppercase; 
+}
+
+.gen {
+    color: rgb(191, 49, 49);
+}

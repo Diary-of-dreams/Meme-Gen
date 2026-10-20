@@ -1,0 +1,21 @@
+.header-inner {
+    /* background-color: pink; */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding-block: 1em;
+    /* height: 100%;     */
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 1em; 
+    list-style: none;
+    margin: 0 20px 0 0;
+    padding: 0;
+    /* height: 100%; */
+}
+
+.main-nav a{
+    text-decoration: none;
+}

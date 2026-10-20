@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Gen</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+
+</head>
+
+<body class="main-layout">
+    <header>
+        <div class="header-inner">
+            <div class="logo">Meme <span class="gen">Gen.</span></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#gallery" class="basic-btn">Gallery</a></li>
+                    <li><a href="#" class="basic-btn">Saved</a></li>
+                    <li><a href="#" class="basic-btn">Randomize</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="gallery" id="gallery">
+        <a href="#editor"><img src="meme-imgs-square/1.jpg" alt="Meme template 1"></a>
+        <a href="#editor"><img src="meme-imgs-square/2.jpg" alt="Meme template 2"></a>
+        <a href="#editor"><img src="meme-imgs-square/3.jpg" alt="Meme template 3"></a>
+        <!-- ...up to ~20 -->
+    </section>
+    <main class="editor" id="editor">
+        <section class="canvas-container">
+            <canvas width="500" height="500"></canvas>
+        </section>
+
+        <section class="editor-panel">
+            <input type="text" class="txt-input" placeholder="Enter your text">
+            <button class="basic-btn">Bigger</button>
+            <button class="basic-btn">Smaller</button>
+        </section>
+    </main>
+
+
+    <script src="JS/main-controller.js"></script>
+    <script src="JS/meme-service.js"></script>
+</body>
+
+</html>
