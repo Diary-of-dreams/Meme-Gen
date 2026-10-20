@@ -1,0 +1,3 @@
+.gallery:has(~ .editor:target) {
+    display: none;
+}

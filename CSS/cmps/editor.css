@@ -1,9 +1,12 @@
 .editor {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5em;
 }
 
+.editor:target {
+    display: grid;
+}
 
 
 .canvas-container canvas {

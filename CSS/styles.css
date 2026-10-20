@@ -1,18 +1,19 @@
 /*BASICS*/
 
-@import url(/CSS/Basics/layout.css);
+@import url(Basics/layout.css);
 
 
 /*CMPS*/
-@import url(/CSS/cmps/header.css);
-@import url(/CSS/cmps/logo.css);
-@import url(/CSS/cmps/buttons.css);
-@import url(/CSS/cmps/editor.css);
+@import url(cmps/header.css);
+@import url(cmps/logo.css);
+@import url(cmps/buttons.css);
+@import url(cmps/editor.css);
+@import url(cmps/gallery.css);
 
 
 /*Setup*/
 
-@import url(/CSS/Setup/fonts.css);
-@import url(/CSS/Setup/vars.css);
+@import url(Setup/fonts.css);
+@import url(Setup/vars.css);
 
 

@@ -20,15 +20,3 @@ body{
 .main-layout > * {
     grid-column: 2;
 }
-
-.editor {
-    display: none;
-}
-
-.editor:target {
-    display: grid;
-}
-
-.gallery:has(~ .editor:target) {
-    display: none;
-}
