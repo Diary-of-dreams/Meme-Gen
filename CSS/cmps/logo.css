@@ -3,10 +3,10 @@
     font-size: 2rem;
     font-weight: normal;
     letter-spacing: 1px;
-    color: #F5F5F5;
+    color: var(--clr-buttons-txt);
      text-transform: uppercase; 
 }
 
 .gen {
-    color: rgb(191, 49, 49);
+    color: var(--clr-buttons-hover);
 }

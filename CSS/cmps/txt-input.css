@@ -1,0 +1,22 @@
+.txt-input {
+    width: 100%;
+    padding: 0.7em 1em;
+    font: inherit;
+    font-size: 0.95rem;
+    color: var(--clr-buttons-txt);
+    background-color: var(--clr-background);
+    border: 1px solid var(--clr-buttons-border);
+    border-radius: 0.6em;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.txt-input::placeholder {
+    color: rgba(245, 245, 245, 0.45);
+}
+
+
+.txt-input:focus {
+    border-color: var( --clr-border-input);
+    box-shadow: 0 0 0 3px rgba(245, 245, 245, 0.1);
+}

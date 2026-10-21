@@ -1,0 +1,7 @@
+ :root {
+     --clr-background: rgb(18, 18, 18);
+      --clr-border-input: rgba(245, 245, 245, 0.7);
+      --clr-buttons-txt: #F5F5F5;
+      --clr-buttons-border: rgba(245, 245, 245, 0.25);
+     --clr-buttons-hover: rgb(191, 49, 49);
+  }
