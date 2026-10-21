@@ -32,6 +32,12 @@
             <input type="text" class="txt-input" oninput="onInputTxt(this.value)" placeholder="Enter your text">
             <button class="basic-btn">Bigger</button>
             <button class="basic-btn">Smaller</button>
+
+            <div class="editor-actions">
+                <a href="#" class="basic-btn" onclick="onDownloadCanvas(this)" download="my-meme.png">Download</a>
+                <button class="basic-btn" onclick="onSaveMeme()">Save</button>
+                <button class="basic-btn" onclick="onShareMeme()">Share</button>
+            </div>
         </section>
     </main>
 

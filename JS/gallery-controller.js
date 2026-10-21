@@ -4,7 +4,7 @@
 function renderGallery() {
     const images = getImgs()
     let elGallery = document.querySelector('.gallery')
-    elGallery.innerHTML = images.map(img => `<img src = ${img.url} onclick="onImgSelect(${img.id})">`).join('')
+    elGallery.innerHTML = images.map(img => `<img src = ${img.url} onclick="onImgSelect(${img.id})" class="image">`).join('')
 }
 
 

@@ -1,6 +1,7 @@
 .editor {
     display: none;
-    grid-template-columns: repeat(2, minmax(0, 1fr)); /* if the canvas refuse to shrink on a narrow window, use minmax(0, 1fr) */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* if the canvas refuse to shrink on a narrow window, use minmax(0, 1fr) */
     gap: 1.5em;
 }
 
@@ -24,5 +25,19 @@
     padding: 1.5em;
     background-color: rgb(30, 30, 30);
     border-radius: 1em;
-    overflow-y: auto;         /* if you add many controls, it scrolls instead of growing */
+    overflow-y: auto;
+    /* if you add many controls, it scrolls instead of growing */
+}
+
+
+.editor-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75em;
+    margin-top: auto;
+}
+
+.editor-actions > * {
+    flex: 1;
+    text-align: center;
 }

@@ -1,3 +1,7 @@
 .gallery:has(~ .editor:target) {
     display: none;
 }
+
+.image{
+    cursor: pointer;
+}
