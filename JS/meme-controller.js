@@ -27,3 +27,8 @@ elImg.onload = () => {
 }
 }
 
+
+function onInputTxt(txt){
+setTxt(txt)
+renderMeme()
+}

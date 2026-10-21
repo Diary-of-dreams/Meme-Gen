@@ -37,3 +37,11 @@ function setTxt(txt) {
     gMeme.lines[0].txt = txt
 
 }
+
+function getImgs(){
+    return gImgs
+}
+
+function setImg(imgId){
+    gMeme.selectedImgId = imgId
+}

@@ -22,28 +22,24 @@
             </nav>
         </div>
     </header>
-    <section class="gallery" id="gallery">
-        <a href="#editor"><img src="meme-imgs-square/1.jpg" alt="Meme template 1"></a>
-        <a href="#editor"><img src="meme-imgs-square/2.jpg" alt="Meme template 2"></a>
-        <a href="#editor"><img src="meme-imgs-square/3.jpg" alt="Meme template 3"></a>
-        <!-- ...up to ~20 -->
-    </section>
+    <section class="gallery" id="gallery"></section>
     <main class="editor" id="editor">
         <section class="canvas-container">
             <canvas width="500" height="500"></canvas>
         </section>
 
         <section class="editor-panel">
-            <input type="text" class="txt-input" placeholder="Enter your text">
+            <input type="text" class="txt-input" oninput="onInputTxt(this.value)" placeholder="Enter your text">
             <button class="basic-btn">Bigger</button>
             <button class="basic-btn">Smaller</button>
         </section>
     </main>
 
 
-    <script src="JS/main-controller.js"></script>
-    <script src="JS/meme-controller.js"></script>
     <script src="JS/meme-service.js"></script>
+    <script src="JS/gallery-controller.js"></script>
+    <script src="JS/meme-controller.js"></script>
+    <script src="JS/main-controller.js"></script>
 </body>
 
 </html>

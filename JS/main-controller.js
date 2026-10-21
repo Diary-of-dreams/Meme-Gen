@@ -4,4 +4,5 @@
 function onInit(){
     setup()
     renderMeme()
+    renderGallery()
 }
