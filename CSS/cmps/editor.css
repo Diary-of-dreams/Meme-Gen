@@ -42,16 +42,22 @@
     text-align: center;
 }
 
-.editor-options {
+.editor-options,
+.input-options {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 1em;
 }
 
-.editor-options>* {
+.editor-options>*,
+.input-options > *  {
     flex: 0,0 auto;
     text-align: center;
+}
+
+.input-options {
+    justify-content: center;   /* the only difference between them */
 }
 
 .basic-btn.icon-only {

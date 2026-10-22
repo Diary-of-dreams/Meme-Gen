@@ -33,6 +33,17 @@
 
         <section class="editor-panel">
             <input type="text" class="txt-input" oninput="onInputTxt(this.value)" placeholder="Enter your text">
+            <div class="input-options">
+                <button class="basic-btn icon-only" title="Add line" aria-label="Add line" onclick="onAddLine()">
+                     <i class="fa-solid fa-circle-plus"></i>
+                </button>
+                <button class="basic-btn icon-only" title="Switch lines" aria-label="Switch lines" onclick="onSwitchLines()">
+                    <i class="fa-solid fa-up-down"></i>
+                </button>
+                <button class="basic-btn icon-only" title="Delete line" aria-label="Delete line" onclick="onDeleteLine()">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
 
             <div class="editor-options">
                 <label class="basic-btn color-btn icon-only" title="Text color" aria-label="Text color">
@@ -40,11 +51,11 @@
                     <input type="color" id="colorPicker" value="#000000" oninput="onSetColor(this.value)">
                 </label>
                 <div class="size-control">
-                    <button class="basic-btn icon-only" onclick="onChangeFontSize(-5)">
+                    <button class="basic-btn icon-only" title="Decrease size" aria-label="Decrease size" onclick="onChangeFontSize(-5)">
                         <i class="fa-solid fa-magnifying-glass-minus"></i>
                     </button>
-                            <span class="size-value" aria-live="polite" >20</span>
-                    <button class="basic-btn icon-only" onclick="onChangeFontSize(5)">
+                    <span class="size-value" aria-live="polite">20</span>
+                    <button class="basic-btn icon-only" title="Increase size" aria-label="Increase size" onclick="onChangeFontSize(5)">
                         <i class="fa-solid fa-magnifying-glass-plus"></i>
                     </button>
                 </div>

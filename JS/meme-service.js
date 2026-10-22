@@ -7,13 +7,15 @@ let gImgs = [
 ]
 
 let gMeme = {
-    selectedImgId: 2,
+    selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I sometimes eat Falafel',
+            txt: 'Enter your textkk' ,
             size: 20,
-            color: 'red'
+            color: '#F5F5F5',
+            x: 100,
+            y: 50
         }
     ]
 }
@@ -30,25 +32,46 @@ function getCurrImg() {
 }
 
 function setColor(color) {
-    gMeme.lines[0].color = color
+    gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
 function setTxt(txt) {
-    gMeme.lines[0].txt = txt
-
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
-function getImgs(){
+function getImgs() {
     return gImgs
 }
 
-function setImg(imgId){
+function setImg(imgId) {
     gMeme.selectedImgId = imgId
 }
 
-function changeFontSize(diff){
+function changeFontSize(diff) {
     if (gMeme.lines[0].size + diff < 10) return
     else {
         gMeme.lines[0].size += diff
     }
+}
+
+
+function addLine() {
+    // gMeme.lines.length
+    let y = 50
+    let x = 100
+    let txt = 'Enter your text'
+    let size = 20
+    let color = '#F5F5F5'
+    if (gMeme.lines.length === 0) {
+        y = 50
+    }
+    if (gMeme.lines.length === 1) {
+        y = 400 
+    }
+    if (gMeme.lines.length >= 2) {
+       y = 200 + ((gMeme.lines.length - 2) * 30)
+    }
+
+gMeme.lines.push({txt, size, color, x, y})
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
