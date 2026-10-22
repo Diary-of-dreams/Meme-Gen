@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Gen</title>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/06f019ef7f.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="CSS/styles.css">
 
 </head>
@@ -30,8 +33,22 @@
 
         <section class="editor-panel">
             <input type="text" class="txt-input" oninput="onInputTxt(this.value)" placeholder="Enter your text">
-            <button class="basic-btn">Bigger</button>
-            <button class="basic-btn">Smaller</button>
+
+            <div class="editor-options">
+                <label class="basic-btn color-btn icon-only" title="Text color" aria-label="Text color">
+                    <i class="fa-solid fa-fill"></i>
+                    <input type="color" id="colorPicker" value="#000000" oninput="onSetColor(this.value)">
+                </label>
+                <div class="size-control">
+                    <button class="basic-btn icon-only" onclick="onChangeFontSize(-5)">
+                        <i class="fa-solid fa-magnifying-glass-minus"></i>
+                    </button>
+                            <span class="size-value" aria-live="polite" >20</span>
+                    <button class="basic-btn icon-only" onclick="onChangeFontSize(5)">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </button>
+                </div>
+            </div>
 
             <div class="editor-actions">
                 <a href="#" class="basic-btn" onclick="onDownloadCanvas(this)" download="my-meme.png">Download</a>

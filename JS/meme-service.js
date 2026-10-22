@@ -45,3 +45,10 @@ function getImgs(){
 function setImg(imgId){
     gMeme.selectedImgId = imgId
 }
+
+function changeFontSize(diff){
+    if (gMeme.lines[0].size + diff < 10) return
+    else {
+        gMeme.lines[0].size += diff
+    }
+}

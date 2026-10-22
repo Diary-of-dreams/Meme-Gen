@@ -32,3 +32,15 @@ function onInputTxt(txt){
 setTxt(txt)
 renderMeme()
 }
+
+function onSetColor(color){
+    setColor(color)
+    renderMeme()
+    document.querySelector('.color-btn').style.color = color
+}
+
+function onChangeFontSize(diff){
+    changeFontSize(diff)
+    renderMeme()
+    document.querySelector('.size-value').textContent = gMeme.lines[0].size
+}

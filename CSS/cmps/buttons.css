@@ -17,4 +17,51 @@
     cursor: pointer;
     color: var(--clr-buttons-hover);
     border-color: var(--clr-buttons-hover);
-}   
+}
+.color-btn {
+    position: relative;   /* anchors the hidden color input ?? */
+}
+
+.color-btn input[type="color"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.size-control {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var( --clr-buttons-border);
+    border-radius: 0.6em;
+    overflow: hidden;
+}
+.size-control .basic-btn.icon-only {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.size-value {
+    min-width: 2.5em;
+    text-align: center;
+    font-size: 0.95rem;
+/* digits all the same width, so the group doesn't jiggle */
+    font-variant-numeric: tabular-nums;
+    color: var(--clr-buttons-txt);
+    border-inline: 1px solid var(--clr-buttons-border);
+}
+
+
+
+
+
+/* If user uses tab on keyboard - will not skip the invisible input button */
+
+.color-btn:focus-within {
+    color: var(--clr-buttons-hover);
+    border-color: var(--clr-buttons-hover);
+}
+
