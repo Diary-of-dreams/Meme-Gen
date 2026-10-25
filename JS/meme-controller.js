@@ -24,15 +24,33 @@ function renderMeme() {
             gCtx.font = `${line.size}px arial`
             gCtx.fillStyle = line.color
             gCtx.textBaseline = 'top'
+            if (line.alignment === 'center') {
+                gCtx.textAlign = "center"
+            }
+            else if (line.alignment === 'right') {
+                gCtx.textAlign = "right"
+            }
+            else {
+                gCtx.textAlign = "left"
+
+            }
             gCtx.fillText(line.txt, line.x, line.y)
             if (idx === meme.selectedLineIdx) {
                 let textWidth = gCtx.measureText(line.txt).width
                 line.width = textWidth
                 gCtx.strokeStyle = '#F5F5F5'
-                gCtx.strokeRect(line.x - 5, line.y - 5, textWidth + 10, line.size + 10)
+                if (line.alignment === 'left') {
+                    gCtx.strokeRect(line.x - 5, line.y - 5, textWidth + 10, line.size + 10)
+                }
+                else if (line.alignment === 'center') {
+                    gCtx.strokeRect(line.x - (textWidth / 2) - 5, line.y - 5, textWidth + 10, line.size + 10)
+                }
+                else {
+                    gCtx.strokeRect(line.x - (textWidth) - 5, line.y - 5, textWidth + 10, line.size + 10)
+                }
             }
 
-        });
+        })
 
     }
 }
@@ -84,24 +102,31 @@ function onCanvasClick(ev) {
     }
     else {
         elInput.value = ''
-        
+
         elInput.focus()
     }
 }
 
-function setLineSelect(clickedX, clickedY) {
-    gMeme.selectedLineIdx = -1
-    let line = gMeme.selectedLineIdx
-    for (let i = 0; i < gMeme.lines.length; i++) {
-        line = gMeme.lines[i]
-        if (clickedX >= line.x && clickedX <= line.x + line.width && clickedY >= line.y && clickedY <= line.y + line.size) {
-            gMeme.selectedLineIdx = i
-        }
 
-    }
+function onDeleteLine() {
+    deleteLine()
+    renderMeme()
+    let elInput = document.querySelector('.txt-input')
+    elInput.value = ''
+    elInput.focus()
 }
 
-function onDeleteLine(){
-    deleteLine()
+function onAlignLeft() {
+    setLineAlign('left')
+    renderMeme()
+}
+
+function onAlignCenter() {
+    setLineAlign('center')
+    renderMeme()
+}
+
+function onAlignRight() {
+    setLineAlign('right')
     renderMeme()
 }

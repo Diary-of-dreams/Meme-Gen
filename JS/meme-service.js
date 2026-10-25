@@ -24,12 +24,12 @@ function getCurrImg() {
 }
 
 function setColor(color) {
-    if(gMeme.lines.length === 0) addLine()
+    if (gMeme.lines.length === 0) addLine()
     gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
 function setTxt(txt) {
-    if(gMeme.lines.length === 0 || gMeme.selectedLineIdx === -1) addLine()
+    if (gMeme.lines.length === 0 || gMeme.selectedLineIdx === -1) addLine()
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
@@ -42,7 +42,7 @@ function setImg(imgId) {
 }
 
 function changeFontSize(diff) {
-    if(gMeme.lines.length === 0) addLine()
+    if (gMeme.lines.length === 0) addLine()
     if (gMeme.lines[gMeme.selectedLineIdx].size + diff < 10) return
     else {
         gMeme.lines[gMeme.selectedLineIdx].size += diff
@@ -51,36 +51,67 @@ function changeFontSize(diff) {
 
 
 function addLine() {
-    // gMeme.lines.length
     let y = 50
     let x = 100
     let txt = 'Enter your text'
     let size = 20
     let color = '#F5F5F5'
+    let alignment = 'left'
     if (gMeme.lines.length === 0) {
         y = 50
     }
     if (gMeme.lines.length === 1) {
-        y = 400 
+        y = 400
     }
     if (gMeme.lines.length >= 2) {
-       y = 200 + ((gMeme.lines.length - 2) * 30)
+        y = 200 + ((gMeme.lines.length - 2) * 30)
     }
 
-gMeme.lines.push({txt, size, color, x, y})
+    gMeme.lines.push({ txt, size, color, x, y, alignment })
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
 
-function switchLine(){
-    gMeme.selectedLineIdx ++
+function switchLine() {
+    gMeme.selectedLineIdx++
 
-    if (gMeme.selectedLineIdx === gMeme.lines.length){
+    if (gMeme.selectedLineIdx === gMeme.lines.length) {
         gMeme.selectedLineIdx = 0
     }
 }
 
+function setLineSelect(clickedX, clickedY) {
+    gMeme.selectedLineIdx = -1
+    for (let i = 0; i < gMeme.lines.length; i++) {
+        let line = gMeme.lines[i]
+        console.log('y', clickedY, line.y, line.y + line.size)
+        let textLeftX
 
-function deleteLine(){
-    
+        if (line.alignment === 'left') {
+            textLeftX = line.x
+        }
+        else if (line.alignment === 'center') {
+            textLeftX = line.x - (line.width / 2)
+        }
+        else {
+            textLeftX = line.x - line.width
+        }
+        if (clickedX >= textLeftX && clickedX <= textLeftX + line.width && clickedY >= line.y && clickedY <= line.y + line.size) {
+            gMeme.selectedLineIdx = i
+        }
+    }
+}
+
+
+function deleteLine() {
+    if (gMeme.selectedLineIdx === -1) return
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    gMeme.selectedLineIdx = -1
+}
+
+
+function setLineAlign(align) {
+    if (gMeme.selectedLineIdx === -1) return
+    gMeme.lines[gMeme.selectedLineIdx].alignment = align
+
 }
