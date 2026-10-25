@@ -5,6 +5,8 @@ function onInit(){
     setup()
     renderMeme()
     renderGallery()
+     let elInput = document.querySelector('.txt-input')
+    elInput.focus()
 }
 
 function onDownloadCanvas(elLink) {

@@ -9,15 +9,7 @@ let gImgs = [
 let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'Enter your textkk' ,
-            size: 20,
-            color: '#F5F5F5',
-            x: 100,
-            y: 50
-        }
-    ]
+    lines: []
 }
 
 let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
@@ -32,10 +24,12 @@ function getCurrImg() {
 }
 
 function setColor(color) {
+    if(gMeme.lines.length === 0) addLine()
     gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
 function setTxt(txt) {
+    if(gMeme.lines.length === 0 || gMeme.selectedLineIdx === -1) addLine()
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
@@ -48,9 +42,10 @@ function setImg(imgId) {
 }
 
 function changeFontSize(diff) {
-    if (gMeme.lines[0].size + diff < 10) return
+    if(gMeme.lines.length === 0) addLine()
+    if (gMeme.lines[gMeme.selectedLineIdx].size + diff < 10) return
     else {
-        gMeme.lines[0].size += diff
+        gMeme.lines[gMeme.selectedLineIdx].size += diff
     }
 }
 
@@ -74,4 +69,18 @@ function addLine() {
 
 gMeme.lines.push({txt, size, color, x, y})
     gMeme.selectedLineIdx = gMeme.lines.length - 1
+}
+
+
+function switchLine(){
+    gMeme.selectedLineIdx ++
+
+    if (gMeme.selectedLineIdx === gMeme.lines.length){
+        gMeme.selectedLineIdx = 0
+    }
+}
+
+
+function deleteLine(){
+    
 }

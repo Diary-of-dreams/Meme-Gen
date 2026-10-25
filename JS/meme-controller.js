@@ -20,11 +20,17 @@ function renderMeme() {
         gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 
-        meme.lines.forEach(line => {
-            // line.textContent
+        meme.lines.forEach((line, idx) => {
             gCtx.font = `${line.size}px arial`
             gCtx.fillStyle = line.color
+            gCtx.textBaseline = 'top'
             gCtx.fillText(line.txt, line.x, line.y)
+            if (idx === meme.selectedLineIdx) {
+                let textWidth = gCtx.measureText(line.txt).width
+                line.width = textWidth
+                gCtx.strokeStyle = '#F5F5F5'
+                gCtx.strokeRect(line.x - 5, line.y - 5, textWidth + 10, line.size + 10)
+            }
 
         });
 
@@ -49,9 +55,53 @@ function onChangeFontSize(diff) {
     document.querySelector('.size-value').textContent = gMeme.lines[0].size
 }
 
-function onAddLine(){
+function onAddLine() {
     addLine()
-    let meme = getMeme()
     renderMeme()
-    document.querySelector('.txt-input').value = meme.lines[meme.selectedLineIdx].txt
+    let elInput = document.querySelector('.txt-input')
+    elInput.value = ''
+    elInput.focus()
+}
+
+function onSwitchLines() {
+    switchLine()
+    renderMeme()
+    let meme = getMeme()
+    let elInput = document.querySelector('.txt-input')
+    elInput.value = meme.lines[meme.selectedLineIdx].txt
+    elInput.focus()
+}
+
+
+function onCanvasClick(ev) {
+    setLineSelect(ev.offsetX, ev.offsetY)
+    renderMeme()
+    let meme = getMeme()
+    let elInput = document.querySelector('.txt-input')
+    if (gMeme.selectedLineIdx != -1) {
+        elInput.value = meme.lines[meme.selectedLineIdx].txt
+        elInput.focus()
+    }
+    else {
+        elInput.value = ''
+        
+        elInput.focus()
+    }
+}
+
+function setLineSelect(clickedX, clickedY) {
+    gMeme.selectedLineIdx = -1
+    let line = gMeme.selectedLineIdx
+    for (let i = 0; i < gMeme.lines.length; i++) {
+        line = gMeme.lines[i]
+        if (clickedX >= line.x && clickedX <= line.x + line.width && clickedY >= line.y && clickedY <= line.y + line.size) {
+            gMeme.selectedLineIdx = i
+        }
+
+    }
+}
+
+function onDeleteLine(){
+    deleteLine()
+    renderMeme()
 }
