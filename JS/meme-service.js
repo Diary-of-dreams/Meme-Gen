@@ -42,6 +42,7 @@ function setImg(imgId) {
 }
 
 function changeFontSize(diff) {
+    if (gMeme.selectedLineIdx === -1) return
     if (gMeme.lines.length === 0) addLine()
     if (gMeme.lines[gMeme.selectedLineIdx].size + diff < 10) return
     else {
@@ -84,7 +85,6 @@ function setLineSelect(clickedX, clickedY) {
     gMeme.selectedLineIdx = -1
     for (let i = 0; i < gMeme.lines.length; i++) {
         let line = gMeme.lines[i]
-        console.log('y', clickedY, line.y, line.y + line.size)
         let textLeftX
 
         if (line.alignment === 'left') {
@@ -111,7 +111,7 @@ function deleteLine() {
 
 
 function setLineAlign(align) {
-    if (gMeme.selectedLineIdx === -1) return
+    if (gMeme.lines.length === 0 || gMeme.selectedLineIdx === -1) return
     gMeme.lines[gMeme.selectedLineIdx].alignment = align
 
 }

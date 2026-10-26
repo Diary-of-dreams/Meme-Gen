@@ -70,7 +70,9 @@ function onSetColor(color) {
 function onChangeFontSize(diff) {
     changeFontSize(diff)
     renderMeme()
-    document.querySelector('.size-value').textContent = gMeme.lines[0].size
+    let meme = getMeme()
+    if (meme.selectedLineIdx === -1) return
+    document.querySelector('.size-value').textContent = meme.lines[meme.selectedLineIdx].size
 }
 
 function onAddLine() {
@@ -79,6 +81,9 @@ function onAddLine() {
     let elInput = document.querySelector('.txt-input')
     elInput.value = ''
     elInput.focus()
+    let meme = getMeme()
+    document.querySelector('.size-value').textContent = meme.lines[meme.selectedLineIdx].size
+
 }
 
 function onSwitchLines() {
@@ -88,6 +93,7 @@ function onSwitchLines() {
     let elInput = document.querySelector('.txt-input')
     elInput.value = meme.lines[meme.selectedLineIdx].txt
     elInput.focus()
+    document.querySelector('.size-value').textContent = meme.lines[meme.selectedLineIdx].size
 }
 
 
@@ -96,14 +102,18 @@ function onCanvasClick(ev) {
     renderMeme()
     let meme = getMeme()
     let elInput = document.querySelector('.txt-input')
+
     if (gMeme.selectedLineIdx != -1) {
         elInput.value = meme.lines[meme.selectedLineIdx].txt
         elInput.focus()
+        document.querySelector('.size-value').textContent = meme.lines[meme.selectedLineIdx].size
+
     }
     else {
         elInput.value = ''
 
         elInput.focus()
+        document.querySelector('.size-value').textContent = 20
     }
 }
 
@@ -114,6 +124,8 @@ function onDeleteLine() {
     let elInput = document.querySelector('.txt-input')
     elInput.value = ''
     elInput.focus()
+    document.querySelector('.size-value').textContent = 20
+
 }
 
 function onAlignLeft() {
