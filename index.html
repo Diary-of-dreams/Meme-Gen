@@ -57,7 +57,7 @@
                         onclick="onChangeFontSize(-5)">
                         <i class="fa-solid fa-magnifying-glass-minus"></i>
                     </button>
-                    <span class="size-value" aria-live="polite">20</span>
+                    <span class="size-value" aria-live="polite">35</span>
                     <button class="basic-btn icon-only" title="Increase size" aria-label="Increase size"
                         onclick="onChangeFontSize(5)">
                         <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -90,12 +90,13 @@
             <div class="editor-actions">
                 <a href="#" class="basic-btn" onclick="onDownloadCanvas(this)" download="my-meme.png">Download</a>
                 <button class="basic-btn" onclick="onSaveMeme()">Save</button>
-                <button class="basic-btn" onclick="onShareMeme()">Share</button>
+                <button class="basic-btn" onclick="onShareMeme(event)">Share</button>
             </div>
         </section>
     </main>
 
 
+    <script src="JS/utils.js"></script>
     <script src="JS/meme-service.js"></script>
     <script src="JS/gallery-controller.js"></script>
     <script src="JS/meme-controller.js"></script>

@@ -34,6 +34,7 @@ function renderMeme() {
                 gCtx.textAlign = "left"
 
             }
+            gCtx.font = `${line.size}px ${line.font}`
             gCtx.fillText(line.txt, line.x, line.y)
             if (idx === meme.selectedLineIdx) {
                 let textWidth = gCtx.measureText(line.txt).width
@@ -113,7 +114,7 @@ function onCanvasClick(ev) {
         elInput.value = ''
 
         elInput.focus()
-        document.querySelector('.size-value').textContent = 20
+        document.querySelector('.size-value').textContent = 35
     }
 }
 
@@ -124,7 +125,7 @@ function onDeleteLine() {
     let elInput = document.querySelector('.txt-input')
     elInput.value = ''
     elInput.focus()
-    document.querySelector('.size-value').textContent = 20
+    document.querySelector('.size-value').textContent = 35
 
 }
 
@@ -144,6 +145,8 @@ function onAlignRight() {
 }
 
 
-function onSetfont(){
-
+function onSetFont(fontName){
+let meme = getMeme()
+meme.lines[meme.selectedLineIdx].font = fontName
+renderMeme()
 }

@@ -55,22 +55,23 @@ function addLine() {
     let y = 50
     let x = 100
     let txt = 'Enter your text'
-    let size = 20
+    let size = 35
     let color = '#F5F5F5'
     let alignment = 'left'
+    let font = 'impact'
     if (!gMeme.lines.some(line => line.y === 50)) {
-        y=50
+        y = 50
     }
     else if (!gMeme.lines.some(line => line.y === 400)) {
-        y=400
+        y = 400
     }
     else if (!gMeme.lines.some(line => line.y === 200)) {
-        y=200
+        y = 200
     }
     else {
         y = 200 + ((gMeme.lines.length - 2) * 30)
     }
-    gMeme.lines.push({ txt, size, color, x, y, alignment })
+    gMeme.lines.push({ txt, size, color, x, y, alignment, font })
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
@@ -119,8 +120,4 @@ function setLineAlign(align) {
     gMeme.lines[gMeme.selectedLineIdx].alignment = align
 
 }
-
-
-
-
 
