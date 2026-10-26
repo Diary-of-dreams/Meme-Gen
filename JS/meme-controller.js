@@ -142,3 +142,8 @@ function onAlignRight() {
     setLineAlign('right')
     renderMeme()
 }
+
+
+function onSetfont(){
+
+}

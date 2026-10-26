@@ -64,15 +64,25 @@
                     </button>
                 </div>
 
-                    <button class="basic-btn icon-only" title="Align left" aria-label="Align left" onclick="onAlignLeft()">
-                        <i class="fa-solid fa-align-left"></i>
-                    </button>
-                     <button class="basic-btn icon-only" title="Align center" aria-label="Align center"onclick="onAlignCenter()">
-                        <i class="fa-solid fa-align-center"></i>
-                    </button>
-                     <button class="basic-btn icon-only" title="Align right" aria-label="Align right" onclick="onAlignRight()">
-                        <i class="fa-solid fa-align-right"></i>
-                    </button>
+                <button class="basic-btn icon-only" title="Align left" aria-label="Align left" onclick="onAlignLeft()">
+                    <i class="fa-solid fa-align-left"></i>
+                </button>
+                <button class="basic-btn icon-only" title="Align center" aria-label="Align center"
+                    onclick="onAlignCenter()">
+                    <i class="fa-solid fa-align-center"></i>
+                </button>
+                <button class="basic-btn icon-only" title="Align right" aria-label="Align right"
+                    onclick="onAlignRight()">
+                    <i class="fa-solid fa-align-right"></i>
+                </button>
+                <select class="font-select" title="Font" aria-label="Font" onchange="onSetFont(this.value)">
+                    <option value="Impact" selected>Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Comic Sans MS">Comic Sans</option>
+                </select>
 
 
             </div>

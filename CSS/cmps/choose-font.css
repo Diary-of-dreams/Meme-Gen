@@ -1,0 +1,29 @@
+.font-select {
+    padding: 0.6em 2.2em 0.6em 1em;
+    font: inherit;
+    font-size: 0.95rem;
+    color: var(--clr-buttons-txt);
+    background-color: transparent;
+    border: 1px solid var(--clr-buttons-border);
+    border-radius: 0.6em;
+    cursor: pointer;
+    outline: none;
+
+    appearance: none;   /* removes the native arrow and styling */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23F5F5F5' stroke-width='1.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.9em center;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.font-select:hover,
+.font-select:focus {
+    border-color: #E8B04B;
+    box-shadow: 0 0 0 3px rgba(232, 176, 75, 0.2);
+}
+
+.font-select option {
+    background-color: rgb(30, 30, 30);   /* the list popup, in browsers that allow styling it */
+    color: var( --clr-buttons-txt);
+}

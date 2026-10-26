@@ -58,19 +58,22 @@ function addLine() {
     let size = 20
     let color = '#F5F5F5'
     let alignment = 'left'
-    if (gMeme.lines.length === 0) {
-        y = 50
+    if (!gMeme.lines.some(line => line.y === 50)) {
+        y=50
     }
-    if (gMeme.lines.length === 1) {
-        y = 400
+    else if (!gMeme.lines.some(line => line.y === 400)) {
+        y=400
     }
-    if (gMeme.lines.length >= 2) {
+    else if (!gMeme.lines.some(line => line.y === 200)) {
+        y=200
+    }
+    else {
         y = 200 + ((gMeme.lines.length - 2) * 30)
     }
-
     gMeme.lines.push({ txt, size, color, x, y, alignment })
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
+
 
 
 function switchLine() {
@@ -103,6 +106,7 @@ function setLineSelect(clickedX, clickedY) {
 }
 
 
+
 function deleteLine() {
     if (gMeme.selectedLineIdx === -1) return
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
@@ -115,3 +119,8 @@ function setLineAlign(align) {
     gMeme.lines[gMeme.selectedLineIdx].alignment = align
 
 }
+
+
+
+
+
