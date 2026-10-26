@@ -3,6 +3,8 @@
 
 let gElCanvas
 let gCtx
+let gMouseDown = false
+
 
 
 function setup() {
@@ -24,6 +26,8 @@ function renderMeme() {
             gCtx.font = `${line.size}px arial`
             gCtx.fillStyle = line.color
             gCtx.textBaseline = 'top'
+            let textWidth = gCtx.measureText(line.txt).width
+            line.width = textWidth
             if (line.alignment === 'center') {
                 gCtx.textAlign = "center"
             }
@@ -37,8 +41,7 @@ function renderMeme() {
             gCtx.font = `${line.size}px ${line.font}`
             gCtx.fillText(line.txt, line.x, line.y)
             if (idx === meme.selectedLineIdx) {
-                let textWidth = gCtx.measureText(line.txt).width
-                line.width = textWidth
+
                 gCtx.strokeStyle = '#F5F5F5'
                 if (line.alignment === 'left') {
                     gCtx.strokeRect(line.x - 5, line.y - 5, textWidth + 10, line.size + 10)
@@ -145,8 +148,52 @@ function onAlignRight() {
 }
 
 
-function onSetFont(fontName){
-let meme = getMeme()
-meme.lines[meme.selectedLineIdx].font = fontName
-renderMeme()
+function onSetFont(fontName) {
+    let meme = getMeme()
+    meme.lines[meme.selectedLineIdx].font = fontName
+    renderMeme()
+}
+
+function onMouseDown(ev) {
+    gMouseDown = true
+    const x = ev.offsetX;
+    const y = ev.offsetY;
+
+    gMeme.selectedLineIdx = gMeme.lines.findIndex(line => {
+        const left = line.x - (line.width / 2)
+        const right = line.x + line.width
+        const top = line.y
+        const bottom = line.y + line.size
+        const isClickedX = x >= left && x <= right
+        const isClickedY = y >= top && y <= bottom
+
+        return isClickedX && isClickedY
+    })
+    //for mouse not to jump to top left corner of selection
+    if (gMeme.selectedLineIdx !== -1) {
+        const clickedLine = gMeme.lines[gMeme.selectedLineIdx]
+        clickedLine.offsetX = x - clickedLine.x
+        clickedLine.offsetY = y - clickedLine.y
+    }
+    renderMeme()
+}
+
+function onMouseMove(ev) {
+    if (!gMouseDown) return
+    if (gMeme.selectedLineIdx === -1) return
+    const x = ev.offsetX
+    const y = ev.offsetY
+    const currLine = gMeme.lines[gMeme.selectedLineIdx]
+    currLine.x = x
+    currLine.y = y
+    //for mouse not to jump to top left corner of selection
+    currLine.x = x - currLine.offsetX
+    currLine.y = y - currLine.offsetY
+    renderMeme()
+}
+
+function onMouseUp(ev) {
+    gMouseDown = false
+
+    renderMeme()
 }
