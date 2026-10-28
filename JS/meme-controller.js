@@ -14,49 +14,76 @@ function setup() {
 
 
 function renderMeme() {
-    let meme = getMeme()
+    _renderBackground(() => {
+        _renderLines()
+        _renderStickers()
+    })
+}
+
+function _renderBackground(onReady) {
     let currImg = getCurrImg()
     let elImg = new Image()
     elImg.src = currImg.url
     elImg.onload = () => {
         gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+        if (onReady) onReady()
+    }
+}
 
-        meme.lines.forEach((line, idx) => {
-            gCtx.font = `${line.size}px arial`
-            gCtx.fillStyle = line.color
-            gCtx.textBaseline = 'top'
-            let textWidth = gCtx.measureText(line.txt).width
-            line.width = textWidth
-            if (line.alignment === 'center') {
-                gCtx.textAlign = "center"
+function _renderLines() {
+    let meme = getMeme()
+
+    meme.lines.forEach((line, idx) => {
+        gCtx.font = `${line.size}px arial`
+        gCtx.fillStyle = line.color
+        gCtx.textBaseline = 'top'
+        let textWidth = gCtx.measureText(line.txt).width
+        line.width = textWidth
+        if (line.alignment === 'center') {
+            gCtx.textAlign = "center"
+        }
+        else if (line.alignment === 'right') {
+            gCtx.textAlign = "right"
+        }
+        else {
+            gCtx.textAlign = "left"
+
+        }
+        gCtx.font = `${line.size}px ${line.font}`
+        gCtx.fillText(line.txt, line.x, line.y)
+        if (idx === meme.selectedLineIdx) {
+
+            gCtx.strokeStyle = '#F5F5F5'
+            if (line.alignment === 'left') {
+                gCtx.strokeRect(line.x - 5, line.y - 5, textWidth + 10, line.size + 10)
             }
-            else if (line.alignment === 'right') {
-                gCtx.textAlign = "right"
+            else if (line.alignment === 'center') {
+                gCtx.strokeRect(line.x - (textWidth / 2) - 5, line.y - 5, textWidth + 10, line.size + 10)
             }
             else {
-                gCtx.textAlign = "left"
-
+                gCtx.strokeRect(line.x - (textWidth) - 5, line.y - 5, textWidth + 10, line.size + 10)
             }
-            gCtx.font = `${line.size}px ${line.font}`
-            gCtx.fillText(line.txt, line.x, line.y)
-            if (idx === meme.selectedLineIdx) {
+        }
 
-                gCtx.strokeStyle = '#F5F5F5'
-                if (line.alignment === 'left') {
-                    gCtx.strokeRect(line.x - 5, line.y - 5, textWidth + 10, line.size + 10)
-                }
-                else if (line.alignment === 'center') {
-                    gCtx.strokeRect(line.x - (textWidth / 2) - 5, line.y - 5, textWidth + 10, line.size + 10)
-                }
-                else {
-                    gCtx.strokeRect(line.x - (textWidth) - 5, line.y - 5, textWidth + 10, line.size + 10)
-                }
-            }
+    })
 
-        })
+}
 
-    }
+function _renderStickers() {
+    let meme = getMeme()
+    meme.stickers.forEach((sticker, idx) => {
+        gCtx.font = `${sticker.size}px arial`
+        gCtx.textBaseline = 'alphabetic'
+        gCtx.fillText(sticker.sticker.icon, sticker.x, sticker.y)
+
+        if (idx === meme.selectedStickerIdx) {
+            let stickerWidth = gCtx.measureText(sticker.sticker.icon).width
+            gCtx.strokeStyle = '#F5F5F5'
+            gCtx.strokeRect(sticker.x - 5, sticker.y - 35, stickerWidth + 10, sticker.size + 10)
+            // console.log(sticker.icon, stickerWidth)
+        }
+    })
 }
 
 
@@ -169,26 +196,56 @@ function onMouseDown(ev) {
 
         return isClickedX && isClickedY
     })
+    gMeme.selectedStickerIdx = gMeme.stickers.findIndex(sticker => {
+        const left = sticker.x - (sticker.size)
+        const right = sticker.x + sticker.size
+        const top = sticker.y - sticker.size
+        const bottom = sticker.y
+        const isClickedX = x >= left && x <= right
+        const isClickedY = y >= top && y <= bottom
+
+        return isClickedX && isClickedY
+    })
+    // console.log('Clicked sticker index:', gMeme.selectedStickerIdx, 'Sticker found:', gMeme.stickers[gMeme.selectedStickerIdx])
     //for mouse not to jump to top left corner of selection
     if (gMeme.selectedLineIdx !== -1) {
         const clickedLine = gMeme.lines[gMeme.selectedLineIdx]
         clickedLine.offsetX = x - clickedLine.x
         clickedLine.offsetY = y - clickedLine.y
     }
+
+    if (gMeme.selectedStickerIdx !== -1) {
+        const clickedLine = gMeme.stickers[gMeme.selectedStickerIdx]
+        clickedLine.offsetX = x - clickedLine.x
+        clickedLine.offsetY = y - clickedLine.y
+    }
     renderMeme()
+
 }
 
 function onMouseMove(ev) {
     if (!gMouseDown) return
-    if (gMeme.selectedLineIdx === -1) return
+    if (gMeme.selectedLineIdx === -1 && gMeme.selectedStickerIdx === -1) return
     const x = ev.offsetX
     const y = ev.offsetY
     const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.x = x
-    currLine.y = y
-    //for mouse not to jump to top left corner of selection
-    currLine.x = x - currLine.offsetX
-    currLine.y = y - currLine.offsetY
+    const currSticker = gMeme.stickers[gMeme.selectedStickerIdx]
+    if (currLine) {
+        currLine.x = x
+        currLine.y = y
+        //for mouse not to jump to top left corner of selection
+        currLine.x = x - currLine.offsetX
+        currLine.y = y - currLine.offsetY
+    }
+    else {
+
+        currSticker.x = x
+        currSticker.y = y
+        //for mouse not to jump to top left corner of selection
+        currSticker.y = y - currSticker.offsetY
+        currSticker.x = x - currSticker.offsetX
+    }
+
     renderMeme()
 }
 
@@ -197,3 +254,4 @@ function onMouseUp(ev) {
 
     renderMeme()
 }
+

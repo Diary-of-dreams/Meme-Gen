@@ -9,7 +9,9 @@ let gImgs = [
 let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: []
+    selectedStickerIdx: 0,
+    lines: [],
+    stickers: []
 }
 
 let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }

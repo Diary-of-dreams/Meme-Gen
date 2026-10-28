@@ -30,6 +30,21 @@
 }
 
 
+
+/* If the panel grows instead of scrolling
+
+The panel’s height comes from the grid row, which is also sized by its content. 
+A tall sticker list can then stretch the row 
+(and the canvas next to it) instead of scrolling. 
+If you see that, make the panel take its height from the row only: */
+
+
+/* .editor-panel {
+    height: 0;
+    min-height: 100%;
+} */
+
+
 .editor-actions {
     display: flex;
     flex-wrap: wrap;
