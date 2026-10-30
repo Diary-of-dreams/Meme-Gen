@@ -1,7 +1,104 @@
-.gallery:has(~ .editor:target) {
+/* .gallery:has(~ .editor:target) {
     display: none;
-}
+} */
 
 .image{
     cursor: pointer;
+}
+
+/* One thing for your JS
+
+After a file is chosen, your handler needs to load it as the meme 
+image and show the editor. With the class-toggle approach, 
+that means calling the same function a thumbnail click calls, 
+for example onImgSelect-style logic that takes an image element or URL 
+instead of an id. If you’re still on the :target approach, the upload 
+tile won’t switch screens on its own, because CSS can’t see the chosen file. */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
+    gap: 0.75em;
+    padding: 1em;
+    background-color: rgb(28, 28, 28);
+    border: 1px solid rgba(245, 245, 245, 0.08);
+    border-radius: 1em;
+}
+
+/* the wrapper disappears from the layout, so the pictures become grid items of .gallery */
+.gallery-images {
+    display: contents;
+}
+
+.gallery .image,
+.gallery-images img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;           /* any picture shape becomes a neat square thumbnail */
+    border-radius: 0.6em;
+    cursor: pointer;
+    outline: 2px solid transparent;
+    transition: transform 0.2s ease, outline-color 0.2s ease;
+}
+
+.gallery .image:hover,
+.gallery-images img:hover {
+    transform: scale(1.04);
+    outline-color: #E8B04B;
+}
+
+/* upload tile */
+.upload-tile {
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    font-size: 0.9rem;
+    color: rgba(245, 245, 245, 0.7);
+    border: 2px dashed rgba(245, 245, 245, 0.25);
+    border-radius: 0.6em;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.upload-tile i {
+    font-size: 1.6rem;
+}
+
+.upload-tile:hover,
+.upload-tile:focus-within {
+    color: rgb(191, 49, 49);
+    border-color: rgb(191, 49, 49);
+    background-color: rgba(191, 49, 49, 0.06);
+}
+
+/* hidden input that stays reachable by keyboard */
+.upload-tile input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* .gallery:has(~ .editor:target) {
+    display: none;
+} */
+
+.gallery {
+    display: none;
+    /* ...your grid-template-columns, gap, padding, background */
+}
+
+.gallery:target {
+    display: grid;
+}
+
+.gallery:target ~ .editor {
+    display: none;
 }

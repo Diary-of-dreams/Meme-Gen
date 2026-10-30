@@ -89,6 +89,7 @@ function _renderStickers() {
 
 function onInputTxt(txt) {
     setTxt(txt)
+    gMeme.selectedStickerIdx = -1
     renderMeme()
 }
 
@@ -108,6 +109,7 @@ function onChangeFontSize(diff) {
 
 function onAddLine() {
     addLine()
+    gMeme.selectedStickerIdx = -1
     renderMeme()
     let elInput = document.querySelector('.txt-input')
     elInput.value = ''
@@ -206,7 +208,6 @@ function onMouseDown(ev) {
 
         return isClickedX && isClickedY
     })
-    // console.log('Clicked sticker index:', gMeme.selectedStickerIdx, 'Sticker found:', gMeme.stickers[gMeme.selectedStickerIdx])
     //for mouse not to jump to top left corner of selection
     if (gMeme.selectedLineIdx !== -1) {
         const clickedLine = gMeme.lines[gMeme.selectedLineIdx]

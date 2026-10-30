@@ -11,5 +11,6 @@ elStickers.innerHTML = stickers.map(sticker => `<button class="sticker-btn" oncl
 
 function onAddSticker(id){
 addSticker(id)
+gMeme.selectedLineIdx = -1
 renderMeme()
 }

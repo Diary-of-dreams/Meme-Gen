@@ -1,5 +1,6 @@
 .editor {
     display: none;
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     /* if the canvas refuse to shrink on a narrow window, use minmax(0, 1fr) */
     gap: 1.5em;
@@ -37,12 +38,12 @@ The panel’s height comes from the grid row, which is also sized by its content
 A tall sticker list can then stretch the row 
 (and the canvas next to it) instead of scrolling. 
 If you see that, make the panel take its height from the row only: */
+    
 
-
-/* .editor-panel {
+.editor-panel {
     height: 0;
     min-height: 100%;
-} */
+}
 
 
 .editor-actions {

@@ -1,11 +1,5 @@
 'use strict'
 
-let gImgs = [
-    { id: 1, url: 'meme-imgs-square/1.jpg', keywords: ['funny'] },
-    { id: 2, url: 'meme-imgs-square/2.jpg', keywords: ['cute', 'dog'] },
-    { id: 3, url: 'meme-imgs-square/3.jpg', keywords: ['cute', 'baby'] }
-]
-
 let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
@@ -35,9 +29,6 @@ function setTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
-function getImgs() {
-    return gImgs
-}
 
 function setImg(imgId) {
     gMeme.selectedImgId = imgId
@@ -111,9 +102,14 @@ function setLineSelect(clickedX, clickedY) {
 
 
 function deleteLine() {
-    if (gMeme.selectedLineIdx === -1) return
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    gMeme.selectedLineIdx = -1
+    if (gMeme.selectedLineIdx === -1 && gMeme.selectedStickerIdx === -1) return
+    if (gMeme.selectedLineIdx !== -1) {
+        gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+        gMeme.selectedLineIdx = -1
+    } else if (gMeme.selectedStickerIdx !== -1) {
+        gMeme.stickers.splice(gMeme.selectedStickerIdx, 1)
+        gMeme.selectedStickerIdx = -1
+    }
 }
 
 
@@ -121,5 +117,11 @@ function setLineAlign(align) {
     if (gMeme.lines.length === 0 || gMeme.selectedLineIdx === -1) return
     gMeme.lines[gMeme.selectedLineIdx].alignment = align
 
+}
+
+function addImg(url) {
+    const id = Math.max(0, ...gImgs.map(img => img.id)) + 1
+    gImgs.push({ id, url, isUploaded: true })
+    return id
 }
 

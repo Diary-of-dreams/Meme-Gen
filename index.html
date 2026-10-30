@@ -25,7 +25,18 @@
             </nav>
         </div>
     </header>
-    <section class="gallery" id="gallery"></section>
+    <section class="gallery" id="gallery">
+        <label class="upload-tile" title="Upload from your computer">
+            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            <span>Upload image</span>
+            <input type="file" accept="image/*" onchange="onImgInput(event)">
+        </label>
+
+        <div class="gallery-images">
+            <!-- your JS renders the pictures here -->
+        </div>
+
+    </section>
     <main class="editor" id="editor">
         <section class="canvas-container">
             <canvas width="500" height="500" onclick="onCanvasClick(event)"></canvas>
@@ -96,6 +107,7 @@
 
 
     <script src="JS/utils.js"></script>
+    <script src="JS/gallery-service.js"></script>
     <script src="JS/meme-service.js"></script>
     <script src="JS/sticker-service.js"></script>
     <script src="JS/gallery-controller.js"></script>
