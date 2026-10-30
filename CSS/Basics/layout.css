@@ -13,10 +13,17 @@ body{
 .main-layout {
     display: grid;
         grid-template-columns: minmax(1em, 1fr) minmax(0, 64em) minmax(1em, 1fr);
-    align-content: start;
+    /* align-content: start; */
+     grid-template-rows: auto 1fr auto; 
+    min-height: 100vh;
     row-gap: 2em;
 }
 
 .main-layout > * {
     grid-column: 2;
 }
+
+.main-layout > header   { grid-row: 1; }
+.main-layout > .gallery,
+.main-layout > .editor  { grid-row: 2; align-self: start; }
+.main-layout > .site-footer { grid-row: 3; }
