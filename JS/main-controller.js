@@ -11,6 +11,7 @@ function onInit(){
    gElCanvas.addEventListener('mousedown', onMouseDown)
    gElCanvas.addEventListener('mousemove', onMouseMove)
    gElCanvas.addEventListener('mouseup', onMouseUp)
+   history.replaceState(null, '', location.pathname)
 }
 
 function onDownloadCanvas(elLink) {

@@ -24,5 +24,6 @@ function onImgInput(ev) {
     renderGallery()
     onImgSelect(id)                          // open it in the editor, like a thumbnail click
 
-    ev.target.value = ''                     // lets the user pick the same file again
+    ev.target.value = ''  
+    location.hash = '#editor'                   // lets the user pick the same file again
 }

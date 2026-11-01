@@ -86,13 +86,9 @@ tile won’t switch screens on its own, because CSS can’t see the chosen file.
     cursor: pointer;
 }
 
-/* .gallery:has(~ .editor:target) {
-    display: none;
-} */
 
-.gallery {
+/* .gallery {
     display: none;
-    /* ...your grid-template-columns, gap, padding, background */
 }
 
 .gallery:target {
@@ -101,4 +97,8 @@ tile won’t switch screens on its own, because CSS can’t see the chosen file.
 
 .gallery:target ~ .editor {
     display: none;
+} */
+
+.gallery:has(~ .editor:target) {
+    display: none;                                   /* gallery hides while the editor is shown */
 }
